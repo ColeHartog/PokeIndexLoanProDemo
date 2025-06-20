@@ -181,7 +181,8 @@ select {
     width: 26px;
     position: absolute;
     left: 50px;
-    top: 2px
+    top: 2px;
+    pointer-events: none;
 }
 
 button {
@@ -226,7 +227,6 @@ button:disabled:hover {
         padding: 0px 20px;
     }
 
-    
     #desktopCountContainer {
         display: none;
     }
