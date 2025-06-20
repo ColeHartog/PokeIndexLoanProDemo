@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #ffda4f;
+    Color: #C59C00;
+    height: 64px;
+    min-height: 64px;
+    align-content: center;
+}
+
+header > div {
+    max-width: 760px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#headerTitle {
+    flex-grow: 3;
+    align-content: center;
+}
+
+#poweredTab {
+    background-color: #ECBF14;
+    padding: 8px 24px;
+    font-size: .85em;
+    color: #FFEDA6;
+    text-shadow: #7F650180;
+    border-radius: 10px;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+main {
+    position: relative;
+    overflow: auto;
+    flex-grow: 2;
+}
+
+#backdrop {
+    height: 420px;
+    width: 100%;
+    background: linear-gradient(180deg,rgba(255, 233, 145, 1) 0%, rgba(255, 217, 71, 1) 90%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+}
+
+#logoContainer {
+    text-align: center;
+    margin-top: 60px;
+}
+
+#logo {
+    max-width: 67.5%;
+}
+
+#dexContainer {
+    display: grid;
+    margin: 80px auto 0 auto;
+    max-width: 760px;
+    grid-template-columns: repeat(auto-fill, 136px);
+    column-gap: 20px;
+    row-gap: 40px;
+    padding-bottom: 20px;
+    justify-content: center;
+}
+
+.dexItemContainer {
+    position: relative;
+    background: #FFFFFF;
+    width: 136px;
+    height: 168px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.25);
+}
+
+.dexItemContainer > img {
+    height: 130px;
+}
+
+.dexItemContainer > h3 {
+    text-transform: capitalize;
+}
+
+.dexIdBubble {
+    width: 30px;
+    height: 30px;
+    background-color: #3B5CA7;
+    border-radius: 15px;
+    align-content: center;
+    color: #FFFFFF;
+    position: absolute;
+    top: -15px;
+    left: 53px;
+    font-size: .8em;
+}
+
+footer {
+    background-color: #DFE4F0;
+    align-content: center;
+    height: 160px;
+    color: #3B5CA7;
+    font-size: 1.5em;
+    position: relative;
+}
+
+#footerContainer {
+    display: flex;
+    flex-direction: row;
+    max-width: 760px;
+    margin: auto;
+}
+
+.countContainer {
+    flex-grow: 3;
+}
+
+.mobileButton {
+    border: 2px solid #3B5CA7;
+    border-radius: 10px;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    user-select: none;
+}
+
+#mobileExpandArea:hover {
+    cursor: pointer;
+}
+
+#mobilePageCountContainer {
+    border: 1px solid #CED6E9;
+    height: 82px;
+    width: 100%;
+    position: absolute;
+    top: -82px;
+    left: 0;
+    background-color: rgba(242, 244, 248, 0.70);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+}
+
+#mobileCountContainer {
+    flex-grow: 3;
+}
+
+select {
+    height: 42px;
+    width: 86px;
+    padding-right: 25px;
+    color: #3B5CA7;
+    border: 2px solid #3B5CA7;
+    border-radius: 10px;
+    font-size: 1em;
+    text-align: center;
+    appearance: none;
+}
+
+.customChev {
+    width: 26px;
+    position: absolute;
+    left: 50px;
+    top: 2px
+}
+
+button {
+    background: linear-gradient(180deg, #7088BF 0%, #3B5CA7 100%);
+    border: 2px solid #3B5CA7;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #DFE4F0;
+    font-size: 0.7em;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 50%;
+}
+
+button:disabled:hover {
+    cursor:not-allowed;
+}
+
+.mobileOnly {
+    display: none;
+}
+
+.desktopOnly {
+    display: auto;
+}
+
+
+
+@media screen and (max-width: 750px){
+    #poweredTab {
+        display: none;
+    }
+
+    footer {
+        height: 82px;
+        min-height: 82px;
+        padding: 0px 20px;
+    }
+
+    
+    #desktopCountContainer {
+        display: none;
+    }
+
+    .mobileOnly {
+        display: inline;
+    }
+
+    .desktopOnly {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 750px){
+    #mobilePageCountContainer {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px){
+    header {
+        padding: 0px 20px
+    }
+}
