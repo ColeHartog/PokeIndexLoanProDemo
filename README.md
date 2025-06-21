@@ -4,7 +4,7 @@ A vanilla JS, HTML, and CSS project made following the outline and mockup from L
 
 ## Live Preview
 
-A deployed version of this is accessible at https://pokeloanpro-app-qgnp7.ondigitalocean.app/
+A deployed version of this is accessible at http://24.144.71.117/
 
 ## Testing
 
