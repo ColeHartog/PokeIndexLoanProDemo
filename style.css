@@ -42,7 +42,6 @@ header > div {
 }
 
 #headerTitle {
-    color: blue;
     flex-grow: 3;
     align-content: center;
 }
