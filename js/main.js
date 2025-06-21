@@ -1,3 +1,5 @@
+import FetchPokemonData from "./fetch.js"
+
 let dexContainer = document.querySelector('#dexContainer')
 let mobilePagCountContainer = document.querySelector('#mobilePageCountContainer')
 
@@ -22,33 +24,12 @@ function UpdateDexEntry(data){
     entryDiv.children[1].innerText = data.name
     entryDiv.children[0].src = data.imgSrc
 }
-    
-function FetchPokemonData(id) {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`).then(response => {
-        if(!response.ok){
-            throw new Error('API Call Error')
-        }
-        return response.json();
-    }).then(data => {
-        UpdateDexEntry({
-            id: data.id,
-            name: data?.name || 'Missing Name',
-            imgSrc: data?.sprites?.front_default || './public/images/pokeball.png'
-        }) // Passing in the new values for the entry if they exist on the data object and if not passing in some placeholders
-    }).catch(error => {
-        UpdateDexEntry({
-            id: id,
-            name: 'Missing Entry',
-            imgSrc: './public/images/questionmark.png'
-        }) // On error or no response from the API updating entry data to show it's missing
-    })
-}
 
 function MakeCardsAndGetPokemon(start, total) {
     let max = (total > 1025) ? 1025 : total
     for(var i = start; i <= max; i++){
         CreateDexBox(i)
-        FetchPokemonData(i)
+        FetchPokemonData(i, UpdateDexEntry)
     }
 }
 
@@ -85,7 +66,7 @@ function RefetchWithBounds(){
     MakeCardsAndGetPokemon(entryStart, entryStart + cardsPerPage - 1)
 }
 
-function PageButton(forward){
+export function PageButton(forward){
     // Calculating the next starting point of entries while overriding if it would cross one of the bounds
     if(forward){
         let calcValue = entryStart + cardsPerPage
@@ -124,6 +105,20 @@ function PageButton(forward){
 RefetchWithBounds()
 
 
-function ShowHideMobilePageCount() {
+export function ShowHideMobilePageCount() {
     mobilePagCountContainer.style.display = (mobilePagCountContainer.style.display == 'none') ? '' : 'none'
 }
+
+// Attaching event listeners to trigger correct functions with page interaction
+document.querySelectorAll('.cardCountSelect').forEach(element => {
+    element.addEventListener("change", (event)=>{SelectUpdate(event.target)})  
+})
+document.querySelectorAll('.mobileButton').forEach(element => {
+    element.addEventListener("click", ShowHideMobilePageCount)
+})
+document.querySelectorAll('.NextButton').forEach(element => {
+    element.addEventListener("click", (e)=>{e.preventDefault();PageButton(true)})
+})
+document.querySelectorAll('.PrevButton').forEach(element => {
+    element.addEventListener("click", (e)=>{e.preventDefault();PageButton(false)})
+})

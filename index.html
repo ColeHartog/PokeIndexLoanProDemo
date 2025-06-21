@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="style.css">
 
-    <script async src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 
     <title>Pokémon Index</title>
 </head>
@@ -35,7 +35,7 @@
             <div id="desktopCountContainer" class="countContainer desktopOnly">
                 Show
                 <span style="position: relative;">
-                    <select id="cardCountSelect" name="cardCount" onchange="SelectUpdate(this)">
+                    <select class="cardCountSelect" name="cardCount">
                         <option selected value="10">10</option>
                         <option value="20">20</option>
                         <option value="50">50</option>
@@ -47,23 +47,23 @@
                 cards per page
             </div>
             <div class="countContainer mobileOnly">
-                <div class="mobileButton" onclick="ShowHideMobilePageCount()">
+                <div class="mobileButton">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-4 -4 32 32" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                     </svg>
                 </div>
             </div>
             <div>
-                <button disabled class="desktopOnly PrevButton" onclick="PageButton(false)">Previous Page</button>
-                <button class="desktopOnly NextButton" onclick="PageButton(true)">Next Page</button>
-                <button disabled class="mobileOnly PrevButton" onclick="PageButton(false)">Previous</button>
-                <button class="mobileOnly NextButton" onclick="PageButton(true)">Next</button>
+                <button disabled class="desktopOnly PrevButton" >Previous Page</button>
+                <button class="desktopOnly NextButton" onclick=>Next Page</button>
+                <button disabled class="mobileOnly PrevButton" >Previous</button>
+                <button class="mobileOnly NextButton" onclick=>Next</button>
             </div>
         </div>
         <div id="mobilePageCountContainer" style="display: none">
             <div id="mobileCountContainer">
                 <span style="position: relative;">
-                    <select id="cardCountSelect" name="cardCount" onchange="SelectUpdate(this)">
+                    <select class="cardCountSelect" name="cardCount">
                         <option selected value="10">10</option>
                         <option value="20">20</option>
                         <option value="50">50</option>
@@ -74,7 +74,7 @@
                 </span>
                 cards per page
             </div>
-            <div class="mobileButton" onclick="ShowHideMobilePageCount()">
+            <div class="mobileButton">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-4 -4 32 32" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                 </svg>
