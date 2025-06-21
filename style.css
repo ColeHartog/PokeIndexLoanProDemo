@@ -1,3 +1,9 @@
+/* 
+-----------------------------
+OVERARCHING
+-----------------------------
+*/
+
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +19,12 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+/* 
+-----------------------------
+TOP OF PAGE 
+-----------------------------
+*/
 
 header {
     background-color: #ffda4f;
@@ -44,6 +56,12 @@ header > div {
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.25);
     text-align: center;
 }
+
+/* 
+-----------------------------
+CENTRAL PAGE 
+-----------------------------
+*/
 
 main {
     position: relative;
@@ -112,6 +130,12 @@ main {
     left: 53px;
     font-size: .8em;
 }
+
+/* 
+-----------------------------
+BOTTOM OF PAGE 
+-----------------------------
+*/
 
 footer {
     background-color: #DFE4F0;
@@ -214,7 +238,11 @@ button:disabled:hover {
     display: auto;
 }
 
-
+/* 
+-----------------------------
+RESPONSIVENESS
+-----------------------------
+*/
 
 @media screen and (max-width: 750px){
     #poweredTab {

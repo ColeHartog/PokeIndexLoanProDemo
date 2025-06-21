@@ -4,7 +4,7 @@ let mobilePagCountContainer = document.querySelector('#mobilePageCountContainer'
 let entryStart = 1
 let cardsPerPage = 10
 
-function createDexBox(id){
+function CreateDexBox(id){
     let newDiv = document.createElement("div");
     newDiv.id = `dexEntry-${id}`
     newDiv.className = "dexItemContainer";
@@ -14,41 +14,45 @@ function createDexBox(id){
         <div class="dexIdBubble">${id.toString()}</div>
     `
     dexContainer.append(newDiv)
+    // Created a base template for the entries, this base will show when waiting for the data from the api call, and will be updated with the respective data.
 }
 
-function updateDexEntry(data){
+function UpdateDexEntry(data){
     let entryDiv = document.querySelector(`#dexEntry-${data.id}`)
     entryDiv.children[1].innerText = data.name
     entryDiv.children[0].src = data.imgSrc
 }
     
-function fetchPokemonData(id) {
+function FetchPokemonData(id) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`).then(response => {
         if(!response.ok){
             throw new Error('API Call Error')
         }
         return response.json();
     }).then(data => {
-        updateDexEntry({
+        UpdateDexEntry({
             id: data.id,
             name: data?.name || 'Missing Name',
             imgSrc: data?.sprites?.front_default || './public/images/pokeball.png'
-        })
-        
+        }) // Passing in the new values for the entry if they exist on the data object and if not passing in some placeholders
     }).catch(error => {
-        console.log(error)
+        UpdateDexEntry({
+            id: id,
+            name: 'Missing Entry',
+            imgSrc: './public/images/questionmark.png'
+        }) // On error or no response from the API updating entry data to show it's missing
     })
 }
 
 function MakeCardsAndGetPokemon(start, total) {
     let max = (total > 1025) ? 1025 : total
     for(var i = start; i <= max; i++){
-        createDexBox(i)
-        fetchPokemonData(i)
+        CreateDexBox(i)
+        FetchPokemonData(i)
     }
 }
 
-function cardPerPageChange(newValue){
+function CardPerPageChange(newValue){
     let oldValue = cardsPerPage
     if(newValue > oldValue){
         // Finding the missing end values of the missing entries within the new bounds and creating / calling for their data
@@ -69,19 +73,20 @@ function cardPerPageChange(newValue){
 }
 
 
-function selectUpdate(selectObject) {
-    cardPerPageChange(selectObject.value)
+function SelectUpdate(selectObject) {
+    CardPerPageChange(selectObject.value)
 }
 
-function clearAllEntries(){
+function ClearAllEntries(){
     dexContainer.replaceChildren();
 }
 
-function refetchWithBounds(){
+function RefetchWithBounds(){
     MakeCardsAndGetPokemon(entryStart, entryStart + cardsPerPage - 1)
 }
 
 function PageButton(forward){
+    // Calculating the next starting point of entries while overriding if it would cross one of the bounds
     if(forward){
         let calcValue = entryStart + cardsPerPage
         entryStart = (calcValue >= 1025) ? 1025 - cardsPerPage : calcValue
@@ -90,8 +95,9 @@ function PageButton(forward){
         let calcValue = entryStart - cardsPerPage
         entryStart = (calcValue < 1) ? 1 : calcValue
     }
-    clearAllEntries()
-    refetchWithBounds()
+    ClearAllEntries()
+    RefetchWithBounds()
+    // Checks to see if were at the upper or lower bounds of the entries to disable / enable the page flip buttons respectively
     if(entryStart == 1){
         document.querySelectorAll('.PrevButton').forEach(Element => {
             Element.setAttribute("disabled", "")
@@ -115,12 +121,9 @@ function PageButton(forward){
     
 }
 
-refetchWithBounds()
+RefetchWithBounds()
 
 
-function showHideMobilePageCount() {
-    if (mobilePagCountContainer.style.display == 'none')
-        mobilePagCountContainer.style.display = ''
-    else
-        mobilePagCountContainer.style.display = 'none'
+function ShowHideMobilePageCount() {
+    mobilePagCountContainer.style.display = (mobilePagCountContainer.style.display == 'none') ? '' : 'none'
 }
