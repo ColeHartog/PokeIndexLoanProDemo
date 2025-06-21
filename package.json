@@ -1,0 +1,27 @@
+{
+  "name": "loanpropokedex",
+  "version": "1.0.0",
+  "description": "A vanilla JS, HTML, and CSS project made following the outline and mockup from LoanPro.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColeHartog/PokeIndexLoanProDemo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ColeHartog/PokeIndexLoanProDemo/issues"
+  },
+  "homepage": "https://github.com/ColeHartog/PokeIndexLoanProDemo#readme",
+  "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "babel-jest": "^30.0.2",
+    "jest": "^30.0.2",
+    "jest-environment-jsdom": "^30.0.2",
+    "jsdom": "^26.1.0"
+  }
+}

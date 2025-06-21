@@ -8,7 +8,9 @@ A deployed version of this is accessible at https://pokeloanpro-app-qgnp7.ondigi
 
 ## Testing
 
-TBD
+Install needed dependencies with npm or preferred package manager, then run command _npm test_.
+
+4 Total tests should run to completion. For a look at what the tests are checking for open the _main.test.js_ file.
 
 ## Deployment
 
